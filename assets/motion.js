@@ -217,7 +217,7 @@ function initHeroSpecimenSwitcher() {
       grnReceiver: 'Receiver: Gate Dock #04 (Ibadan)',
       badge: '■ 2 Exceptions Detected Before Release',
       headline: '₦886,000 Unearned Overbilling Blocked',
-      breakdown: '<strong>1. Quantity Shortfall:</strong> Supplier billed 100 bags, receiving clerk signed 92 at store dock (-8 bags unreceived = ₦380,000).<br><strong>2. Unit Price Escalation:</strong> Invoiced at ₦47,500 vs. agreed contract PO-2026-8812 price of ₦42,000 (+₦5,500/bag = ₦506,000).',
+      breakdown: '<strong>1. Shortfall:</strong> 92/100 bags received (-₦380,000)<br><strong>2. Price Creep:</strong> ₦47,500 billed vs. ₦42,000 PO (-₦506,000)',
       approved: '₦3,864,000'
     },
     sugar: {
@@ -231,7 +231,7 @@ function initHeroSpecimenSwitcher() {
       grnReceiver: 'Receiver: Central Bulk Depot #01 (Apapa)',
       badge: '■ Delivery Deficit & Discrepancy Flagged',
       headline: '₦1,560,000 Unearned Overbilling Blocked',
-      breakdown: '<strong>1. Physical Missing Bags:</strong> Billed 200 bags, haulage manifest offloaded only 180 bags (-20 bags = ₦1,560,000).<br><strong>2. Contract Price Check:</strong> Unit price matched approved PO rate of ₦78,000. Full variance isolated to unreceived physical bags.',
+      breakdown: '<strong>1. Shortfall:</strong> 180/200 bags offloaded (-₦1,560,000)<br><strong>2. Contract Check:</strong> Unit rate ₦78,000 verified.',
       approved: '₦14,040,000'
     },
     poultry: {
@@ -245,7 +245,7 @@ function initHeroSpecimenSwitcher() {
       grnReceiver: 'Receiver: Cold Storage Dock #02 (Lagos)',
       badge: '■ Net Weighbridge Shortfall Flagged',
       headline: '₦858,000 Weight Variance Blocked',
-      breakdown: '<strong>1. Weighbridge Deficit:</strong> Billed 1,500 kg, cold storage scale recorded 1,280 kg net weight (-220 kg deficit = ₦858,000).<br><strong>2. Temperature Log Verified:</strong> Core temperature accepted at -18°C. Financial deduction applied exclusively to net weight gap.',
+      breakdown: '<strong>1. Weight Deficit:</strong> 1,280/1,500 kg recorded (-₦858,000)<br><strong>2. Cold Chain:</strong> -18°C core temp verified.',
       approved: '₦4,992,000'
     }
   };
