@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security, Governance & Microsoft Azure Infrastructure — Vouchra</title>
+  <meta name="description" content="Institutional data protection, AES-256 encryption, and Azure cloud infrastructure powering Vouchra.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo-mark.svg?v=2">
+  <link rel="stylesheet" href="assets/vouchra.css">
+  <style>
+    .page-hero {
+      padding: 64px 0 48px;
+      border-bottom: var(--grid-line-bold);
+    }
+
+    .sec-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: var(--grid-line-dark);
+      margin: 48px 0 72px;
+    }
+
+    .sec-cell {
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sec-cell:not(:nth-child(3n)) {
+      border-right: var(--grid-line-dark);
+    }
+
+    .sec-cell:nth-child(-n+3) {
+      border-bottom: var(--grid-line-dark);
+    }
+
+    @media (max-width: 900px) {
+      .sec-grid {
+        grid-template-columns: 1fr;
+      }
+      .sec-cell:not(:nth-child(3n)) {
+        border-right: none;
+      }
+      .sec-cell:not(:last-child) {
+        border-bottom: var(--grid-line-dark);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress-line"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner container">
+      <div class="brand-cell">
+        <a href="index.html">
+          <img src="assets/img/logo.svg?v=2" alt="Vouchra" class="brand-logo">
+        </a>
+      </div>
+
+      <nav class="nav-matrix">
+        <a href="index.html" class="nav-item">Platform</a>
+        <a href="dashboard.html?packet=VCH-8821" class="nav-item">Audit Desk</a>
+        <a href="pricing.html" class="nav-item">Pricing</a>
+        <a href="about.html" class="nav-item">Leadership</a>
+        <a href="security.html" class="nav-item active">Security</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn-swiss-secondary" style="border:none; padding: 6px 12px;">Sign In</a>
+        <a href="signup.html" class="btn-swiss-primary">
+          <span>Audit Packet &rarr;</span>
+        </a>
+      </div>
+
+      <button class="mobile-hamburger" aria-label="Open Navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="grid-index">[ 05 / ENTERPRISE CLOUD ARCHITECTURE ]</div>
+      <h1 class="hero-title" style="font-size: 52px; margin-bottom: 16px;">
+        Institutional Protection for Enterprise Financial Documents.
+      </h1>
+      <p style="font-size: 16.5px; color: var(--ink-secondary); max-width: 680px;">
+        Financial invoices and supplier agreements require zero-trust encryption, strict data sovereignty, and deterministic audit trails. Vouchra is architected natively on Microsoft Azure's enterprise cloud.
+      </p>
+    </div>
+  </section>
+
+  <!-- Grid -->
+  <section class="container">
+    <div class="sec-grid">
+      <!-- 1 -->
+      <div class="sec-cell">
+        <span class="mono" style="font-size: 11px; font-weight: 700; color: var(--swiss-red);">[ 01 / AZURE AI ]</span>
+        <h3 style="font-size: 17px; font-weight: 800;">Azure AI Document Intelligence</h3>
+        <p style="font-size: 13.5px;">
+          Document extraction operates within isolated Azure Cognitive Service containers. Customer PDFs, invoices, and physical waybill photos are never retained for third-party public foundation model training.
+        </p>
+      </div>
+
+      <!-- 2 -->
+      <div class="sec-cell">
+        <span class="mono" style="font-size: 11px; font-weight: 700; color: var(--swiss-red);">[ 02 / KUBERNETES ]</span>
+        <h3 style="font-size: 17px; font-weight: 800;">Azure Kubernetes Service (AKS)</h3>
+        <p style="font-size: 13.5px;">
+          Core 3-way matching logic runs in hardened AKS clusters deployed in the West Europe cloud region, with microsecond multi-tenant isolation, automatic horizontal pod autoscaling, and zero shared database storage.
+        </p>
+      </div>
+
+      <!-- 3 -->
+      <div class="sec-cell">
+        <span class="mono" style="font-size: 11px; font-weight: 700; color: var(--swiss-red);">[ 03 / IDENTITY ]</span>
+        <h3 style="font-size: 17px; font-weight: 800;">Microsoft Entra ID & RBAC</h3>
+        <p style="font-size: 13.5px;">
+          Granular role-based access control (Store Gate Receiver, AP Clerk, Procurement Manager, CFO). Seamless Single Sign-On (SSO) integration with SAML 2.0, Okta, and Microsoft Entra ID.
+        </p>
+      </div>
+
+      <!-- 4 -->
+      <div class="sec-cell">
+        <span class="mono" style="font-size: 11px; font-weight: 700; color: var(--swiss-red);">[ 04 / ENCRYPTION ]</span>
+        <h3 style="font-size: 17px; font-weight: 800;">AES-256 & TLS 1.3 Standards</h3>
+        <p style="font-size: 13.5px;">
+          All documents at rest in Azure Blob Storage are encrypted using AES-256 with customer-managed keys (CMK) in Azure Key Vault. All transmission uses TLS 1.3 with strict HTTP Strict Transport Security (HSTS).
+        </p>
+      </div>
+
+      <!-- 5 -->
+      <div class="sec-cell">
+        <span class="mono" style="font-size: 11px; font-weight: 700; color: var(--swiss-red);">[ 05 / COMPLIANCE ]</span>
+        <h3 style="font-size: 17px; font-weight: 800;">NDPR & Nigerian Data Sovereignty</h3>
+        <p style="font-size: 13.5px;">
+          Full compliance with the Nigeria Data Protection Act (NDPA 2023) and the Nigeria Data Protection Regulation (NDPR). Comprehensive annual data protection audit conducted by a licensed DPCO.
+        </p>
+      </div>
+
+      <!-- 6 -->
+      <div class="sec-cell">
+        <span class="mono" style="font-size: 11px; font-weight: 700; color: var(--swiss-red);">[ 06 / IMMUTABILITY ]</span>
+        <h3 style="font-size: 17px; font-weight: 800;">Cryptographic Audit Trails</h3>
+        <p style="font-size: 13.5px;">
+          Every invoice match, price variance flag, user approval, and debit note issuance generates a cryptographically signed audit log record exported directly to your external SIEM or ERP.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dramatic Architectural Footer -->
+  <footer class="dramatic-footer">
+    <div class="footer-hero-banner">
+      <div class="container">
+        <div class="grid-index" style="color: #FFFFFF;">
+          <span style="color: #FFFFFF;">[ CORPORATE ASSURANCE &bull; RC 1984210 ]</span>
+        </div>
+        <h2 class="footer-hero-statement">
+          Audit Every Waybill. <br>
+          <span class="red">Protect Every Naira.</span>
+        </h2>
+        <p class="footer-hero-sub">
+          The deterministic three-way matching standard for African retail supermarkets, food chains, and FMCG distributors. Powered by Microsoft Azure.
+        </p>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+          <a href="signup.html" class="btn-swiss-primary" style="background: var(--swiss-red); border-color: var(--swiss-red);">
+            <span>Start Free Audit [ &rarr; ]</span>
+          </a>
+          <a href="dashboard.html?packet=VCH-8821" class="btn-swiss-secondary" style="border-color: rgba(255, 255, 255, 0.3); color: #FFFFFF;">
+            <span>Live Specimen Inspection</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="footer-matrix-dark">
+        <div class="footer-dark-cell">
+          <img src="assets/img/logo-white.svg?v=2" alt="Vouchra" style="height: 24px; margin-bottom: 6px;">
+          <p style="font-size: 13px; color: #A1A1AA; line-height: 1.6;">
+            Automated three-way invoice, physical goods received note, and purchase contract reconciliation. Built in Sabo Yaba, Lagos.
+          </p>
+          <div class="mono" style="font-size: 11px; color: #FFFFFF; line-height: 1.6;">
+            <strong>VOUCHRA TECHNOLOGIES LTD</strong><br>
+            CAC RC 1984210 &bull; TIN 24891044-0001<br>
+            Plot 14, Commercial Avenue, Sabo Yaba, Lagos<br>
+            Direct: +234 1 888 4920 &bull; support@vouchra.com
+          </div>
+        </div>
+
+        <div class="footer-dark-cell">
+          <div class="footer-dark-title">[ 01 ] PLATFORM</div>
+          <div class="footer-dark-nav">
+            <a href="dashboard.html?packet=VCH-8821">Live Match Desk</a>
+            <a href="pricing.html">Subscription Pricing</a>
+            <a href="security.html">Azure Cloud Infrastructure</a>
+            <a href="about.html">Founders & Story</a>
+            <a href="signup.html">Open AP Workspace</a>
+          </div>
+        </div>
+
+        <div class="footer-dark-cell">
+          <div class="footer-dark-title">[ 02 ] STATUTORY & GOVERNANCE</div>
+          <div class="footer-dark-nav">
+            <a href="legal.html#privacy">NDPR Data Privacy</a>
+            <a href="security.html#soc2">SOC 2 Type II Controls</a>
+            <a href="legal.html#terms">Master Service Agreement</a>
+            <a href="legal.html#privacy">Data Sovereignty</a>
+            <a href="legal.html#sla">99.9% Uptime Guarantee</a>
+          </div>
+        </div>
+
+        <div class="footer-dark-cell">
+          <div class="footer-dark-title">[ 03 ] INFRASTRUCTURE</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; font-family: var(--font-mono); font-size: 11px;">
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: #71717A;">MATCH CLUSTER:</span>
+              <span style="color: var(--swiss-green); font-weight: 700;">OPERATIONAL</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: #71717A;">AZURE OCR:</span>
+              <span style="color: var(--swiss-green); font-weight: 700;">99.98% UPTIME</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: #71717A;">CLOUD REGION:</span>
+              <span style="color: #FFFFFF;">WEST EUROPE (AKS)</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: #71717A;">AVG LATENCY:</span>
+              <span style="color: #FFFFFF;">1.18 SECONDS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-giant-wordmark-bar">
+        <div class="footer-giant-wordmark">
+          VOUCHRA. SECURITY.
+        </div>
+      </div>
+
+      <div class="footer-dark-bottom">
+        <div>&copy; 2026 VOUCHRA TECHNOLOGIES LTD (RC 1984210). ALL RIGHTS RESERVED.</div>
+        <div style="display: flex; gap: 24px;">
+          <a href="legal.html#privacy" style="color: #A1A1AA;">Privacy Policy</a>
+          <a href="legal.html#terms" style="color: #A1A1AA;">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/motion.js"></script>
+</body>
+</html>

@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vouchra — Three-Way Vendor Bill & Delivery Waybill Reconciliation Engine</title>
+  <meta name="description" content="A mathematical 3-way invoice, goods received note (GRN), and purchase contract reconciliation platform for African retail, food chains, and FMCG distributors.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo-mark.svg?v=2">
+  <link rel="stylesheet" href="assets/vouchra.css">
+</head>
+<body>
+  <!-- Scroll Progress Hairline -->
+  <div class="scroll-progress-line"></div>
+
+  <!-- ==========================================================================
+       TOP ARCHITECTURAL SWISS HEADER (CLEAN, AIRY, NON-CRAMPED)
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="header-inner container">
+      <div class="brand-cell">
+        <a href="index.html">
+          <img src="assets/img/logo.svg?v=2" alt="Vouchra" class="brand-logo">
+        </a>
+      </div>
+
+      <nav class="nav-matrix">
+        <a href="index.html" class="nav-item active">Platform</a>
+        <a href="dashboard.html?packet=VCH-8821" class="nav-item">Audit Desk</a>
+        <a href="pricing.html" class="nav-item">Pricing</a>
+        <a href="about.html" class="nav-item">Leadership</a>
+        <a href="security.html" class="nav-item">Security</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn-swiss-secondary" style="border:none; padding: 6px 12px;">Sign In</a>
+        <a href="signup.html" class="btn-swiss-primary">
+          <span>Audit Packet &rarr;</span>
+        </a>
+      </div>
+
+      <button class="mobile-hamburger" aria-label="Open Navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-backdrop"></div>
+  <aside class="mobile-drawer">
+    <div>
+      <div class="drawer-top">
+        <img src="assets/img/logo.svg?v=2" alt="Vouchra" style="height: 24px;">
+        <button class="drawer-close" aria-label="Close Menu" style="background:none; border:none; font-size:26px; cursor:pointer;">&times;</button>
+      </div>
+      <nav class="drawer-nav">
+        <a href="index.html"><span>[ 01 ] PLATFORM OVERVIEW</span> &rarr;</a>
+        <a href="dashboard.html?packet=VCH-8821"><span>[ 02 ] LIVE AUDIT DESK</span> &rarr;</a>
+        <a href="pricing.html"><span>[ 03 ] SUBSCRIPTION PRICING</span> &rarr;</a>
+        <a href="about.html"><span>[ 04 ] FOUNDERS & STORY</span> &rarr;</a>
+        <a href="security.html"><span>[ 05 ] SECURITY & AZURE</span> &rarr;</a>
+        <a href="legal.html"><span>[ 06 ] GOVERNANCE & NDPR</span> &rarr;</a>
+      </nav>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <a href="login.html" class="btn-swiss-secondary" style="width: 100%; text-align: center;">Sign In to Account</a>
+      <a href="signup.html" class="btn-swiss-primary" style="width: 100%; text-align: center;">Open AP Workspace [ &rarr; ]</a>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       HERO SECTION: REFINED MÜLLER-BROCKMANN BROADSHEET MATRIX
+       ========================================================================== -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Hero Left Column -->
+        <div class="hero-col-left">
+          <div class="hero-trust-tag">
+            <span style="display:inline-block; width:8px; height:8px; background:var(--swiss-red);"></span>
+            <span>TRUSTED BY SUNDRY FOODS &amp; FOODCO</span>
+          </div>
+
+          <h1 class="hero-title">
+            Three-Way <br>
+            Vendor Audit <br>
+            <span class="red">Engine.</span>
+          </h1>
+
+          <p class="hero-desc">
+            Reconcile supplier invoices, physical gate waybills, and purchase contracts in 12 seconds before payment approval.
+          </p>
+
+          <div class="hero-actions">
+            <a href="signup.html" class="btn-swiss-primary">
+              <span>Start Free Audit &rarr;</span>
+            </a>
+            <a href="dashboard.html?packet=VCH-8821" class="btn-swiss-secondary">
+              <span>Open Live Desk</span>
+            </a>
+          </div>
+
+          <!-- Hero Metrics Triad -->
+          <div class="hero-metrics-matrix">
+            <div class="metric-cell">
+              <span class="metric-num red">₦142.8M</span>
+              <span class="metric-label">Prevented Overbilling</span>
+            </div>
+            <div class="metric-cell">
+              <span class="metric-num">12s</span>
+              <span class="metric-label">3-Way Match Latency</span>
+            </div>
+            <div class="metric-cell">
+              <span class="metric-num">3,420</span>
+              <span class="metric-label">Bills Audited Today</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Right Column: The Live Scanner Proof Sheet -->
+        <div class="hero-col-right">
+          <!-- Animated Laser Scan Line -->
+          <div class="swiss-laser-sweep"></div>
+
+          <!-- Interactive Case Selector Tabs -->
+          <div class="hero-scenario-tabs">
+            <button class="hero-tab-pill active" data-hero-scenario="flour">01 // FLOUR MILLS</button>
+            <button class="hero-tab-pill" data-hero-scenario="sugar">02 // DANGOTE SUGAR</button>
+            <button class="hero-tab-pill" data-hero-scenario="poultry">03 // CHI FARMS</button>
+          </div>
+
+          <div class="proof-sheet-topbar">
+            <span id="hero-packet-code">DOCUMENT MATRIX [ REF: VCH-8821 ]</span>
+            <span class="mono" style="color: var(--swiss-red);">● LIVE OCR PARSING</span>
+          </div>
+
+          <div class="proof-sheet-content">
+            <!-- 2-Document Comparison Row -->
+            <div class="specimen-matrix-row">
+              <!-- Invoice -->
+              <div class="specimen-cell">
+                <div class="specimen-tag">
+                  <span id="hero-inv-tag">Supplier Bill #99042</span>
+                  <span class="ocr-chip-inline">[OCR: 99.8%]</span>
+                </div>
+                <div class="specimen-item">
+                  <span id="hero-spec-inv-title" class="specimen-item-title">Golden Penny Flour 50kg</span>
+                  <span id="hero-spec-inv-val" class="specimen-item-val mono">100 Bags @ ₦47,500</span>
+                </div>
+                <div id="hero-spec-inv-vendor" class="mono" style="font-size: 11px; color: var(--ink-muted);">
+                  Vendor: Flour Mills of Nig Plc
+                </div>
+              </div>
+
+              <!-- Waybill -->
+              <div class="specimen-cell">
+                <div class="specimen-tag">
+                  <span id="hero-grn-tag">Gate Goods Received</span>
+                  <span class="ocr-chip-inline green">STAMP VERIFIED ✓</span>
+                </div>
+                <div class="specimen-item">
+                  <span class="specimen-item-title">Physical Delivery Count</span>
+                  <span id="hero-spec-grn-val" class="specimen-item-val mono" style="color: var(--swiss-red);">92 Bags (-8 SHORT)</span>
+                </div>
+                <div id="hero-spec-grn-receiver" class="mono" style="font-size: 11px; color: var(--ink-muted);">
+                  Receiver: Gate Dock #04 (Ibadan)
+                </div>
+              </div>
+            </div>
+
+            <!-- Swiss Vermilion Discrepancy Card -->
+            <div class="variance-action-card">
+              <!-- Tactile Rubber Stamp -->
+              <div class="audit-rubber-stamp">
+                <span>HOLD FOR DEBIT NOTE</span>
+              </div>
+
+              <div class="variance-badge">
+                <span id="hero-spec-badge">■ 2 Exceptions Detected Before Release</span>
+              </div>
+              <div id="hero-spec-headline" class="variance-headline">
+                ₦886,000 Unearned Overbilling Blocked
+              </div>
+              <div id="hero-spec-breakdown" class="variance-breakdown">
+                <strong>1. Quantity Shortfall:</strong> Supplier billed 100 bags, receiving clerk signed 92 at store dock (-8 bags unreceived = ₦380,000).<br>
+                <strong>2. Unit Price Escalation:</strong> Invoiced at ₦47,500 vs. agreed contract PO-2026-8812 price of ₦42,000 (+₦5,500/bag = ₦506,000).
+              </div>
+              <div class="variance-footer">
+                <div class="variance-amount">
+                  Approved: <strong id="hero-spec-approved" style="color: var(--ink);">₦3,864,000</strong>
+                </div>
+                <a id="hero-spec-dn-btn" href="dashboard.html?packet=VCH-8821" class="btn-swiss-primary" style="padding: 8px 14px; font-size: 11px;">
+                  <span>Issue Debit Note [ &rarr; ]</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       VERIFIABLE SOCIAL PROOF: EXPOSED 3-COLUMN SWISS GRID
+       ========================================================================== -->
+  <section class="proof-section">
+    <div class="container">
+      <div class="proof-grid">
+        <!-- Client 1 -->
+        <div class="proof-cell">
+          <div class="grid-index">[ 01 / CLIENT AUDIT ]</div>
+          <div class="proof-corp-header">
+            <span class="proof-corp-name">Sundry Foods Limited</span>
+            <span class="proof-cac-stamp">CAC RC 498703</span>
+          </div>
+          <p class="proof-desc">
+            Reconciles 1,200+ daily grocery, meat, and flour delivery receipts across 140+ Kilimanjaro restaurant and Nibbles bakery units nationwide.
+          </p>
+        </div>
+
+        <!-- Client 2 -->
+        <div class="proof-cell">
+          <div class="grid-index">[ 02 / CLIENT AUDIT ]</div>
+          <div class="proof-corp-header">
+            <span class="proof-corp-name">FoodCo Nigeria Limited</span>
+            <span class="proof-cac-stamp">CAC RC 278149</span>
+          </div>
+          <p class="proof-desc">
+            Auditing over ₦450M in monthly FMCG supplier deliveries across 22+ retail supermarket branches in Southwest Nigeria.
+          </p>
+        </div>
+
+        <!-- Client 3 -->
+        <div class="proof-cell">
+          <div class="grid-index">[ 03 / CLIENT AUDIT ]</div>
+          <div class="proof-corp-header">
+            <span class="proof-corp-name">Hubmart Stores Limited</span>
+            <span class="proof-cac-stamp">CAC RC 1258671</span>
+          </div>
+          <p class="proof-desc">
+            Preventing duplicate vendor billing and unit price creep across 15,000+ monthly retail inventory deliveries in Lagos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SPLIT-IMAGE STORYTELLING 01: TEXT LEFT | IMAGE RIGHT (DOCKSIDE INTAKE)
+       ========================================================================== -->
+  <section class="split-story-section">
+    <div class="container">
+      <div class="split-story-grid">
+        <!-- Left: Stark Typographic Narrative & Micro-Ledger -->
+        <div class="split-story-text-cell">
+          <div class="grid-index">[ 02 / INTAKE REALITY ]</div>
+          <h2 style="font-size: 36px; line-height: 1.1; margin-bottom: 16px; text-transform: uppercase;">
+            The Physical Handover is Where Capital Leaks.
+          </h2>
+          <p style="font-size: 15.5px; color: var(--ink-secondary); line-height: 1.65; margin-bottom: 16px;">
+            When the haulage truck opens at 07:30 AM, 100 bags were billed at the supplier's depot. By the time pallets are unloaded, 8 bags are damaged or short-loaded.
+          </p>
+          <p style="font-size: 15.5px; color: var(--ink-secondary); line-height: 1.65;">
+            The clerk signs the physical waybill for 92 bags. If that note sits on a clipboard while head office processes the electronic invoice, <strong>your business pays for 100 bags</strong>.
+          </p>
+
+          <div class="mini-discrepancy-table">
+            <div class="mini-row" style="background: #FFFFFF; font-weight: 700;">
+              <span>SUPPLIER INVOICE DISPATCH:</span>
+              <span class="mono">100 BAGS BILLED</span>
+            </div>
+            <div class="mini-row" style="color: var(--flag-red); font-weight: 700;">
+              <span>PHYSICAL GATE COUNT (GRN):</span>
+              <span class="mono">92 BAGS COUNTED (-8)</span>
+            </div>
+            <div class="mini-row" style="background: #FFFFFF; font-weight: 700;">
+              <span>VOUCHRA AUTO-DEDUCTION:</span>
+              <span class="mono" style="color: var(--swiss-red);">-₦336,000 DEBIT NOTE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Full-Bleed Documentary Photo -->
+        <div class="split-story-img-cell">
+          <img src="assets/img/dock_new.jpg" alt="Distribution Center Receiving Bay Dock Intake" loading="lazy">
+          <div class="split-img-overlay-stamp">
+            <span>[ CAM 02: INTAKE BAY #04 &bull; IKEJA CENTRAL HUB ]</span>
+          </div>
+          <div class="split-img-overlay-bottom">
+            <span>UNLOADING MANIFEST VERIFICATION</span>
+            <span class="mono" style="color: var(--swiss-red-bright);">8 SHORTFALL UNITS FLAGGED</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SPLIT-IMAGE STORYTELLING 02: IMAGE LEFT | TEXT RIGHT (WAYBILL OCR)
+       ========================================================================== -->
+  <section class="split-story-section">
+    <div class="container">
+      <div class="split-story-grid">
+        <!-- Left: Full-Bleed Documentary Photo -->
+        <div class="split-story-img-cell">
+          <img src="assets/img/paperwork_real.jpg" alt="Signed Physical Delivery Waybill Inspection" loading="lazy">
+          <div class="split-img-overlay-stamp">
+            <span>[ OPTICAL CAPTURE &bull; HANDWRITING OCR ]</span>
+          </div>
+          <div class="split-img-overlay-bottom">
+            <span>WAYBILL #GRN-4418 PARSED</span>
+            <span class="mono" style="color: var(--swiss-red-bright);">99.4% FIELD CONFIDENCE</span>
+          </div>
+        </div>
+
+        <!-- Right: Stark Typographic Narrative -->
+        <div class="split-story-text-cell">
+          <div class="grid-index">[ 03 / OPTICAL RECONCILIATION ]</div>
+          <h2 style="font-size: 36px; line-height: 1.1; margin-bottom: 16px; text-transform: uppercase;">
+            Carbon-Copy Waybills Digitized in 12 Seconds.
+          </h2>
+          <p style="font-size: 15.5px; color: var(--ink-secondary); line-height: 1.65; margin-bottom: 16px;">
+            Receiving clerks snap the stamped delivery note on any mobile device at the warehouse gate. Vouchra's layout intelligence extracts handwritten quantities, batch dates, and receiver signatures.
+          </p>
+          <p style="font-size: 15.5px; color: var(--ink-secondary); line-height: 1.65;">
+            Every extracted line item is deterministically cross-checked against the approved purchase contract ceiling before an invoice ever enters your ERP payout queue.
+          </p>
+
+          <div class="mini-discrepancy-table">
+            <div class="mini-row" style="background: #FFFFFF; font-weight: 700;">
+              <span>STEP 01 // GATE SNAP:</span>
+              <span class="mono">WHATSAPP / WEB UPLOAD</span>
+            </div>
+            <div class="mini-row" style="font-weight: 700;">
+              <span>STEP 02 // AI EXTRACTION:</span>
+              <span class="mono" style="color: var(--swiss-red);">12s LINE-ITEM PARSING</span>
+            </div>
+            <div class="mini-row" style="background: #FFFFFF; font-weight: 700;">
+              <span>STEP 03 // CONTRACT LOCK:</span>
+              <span class="mono" style="color: var(--swiss-green);">RATE &amp; QTY VERIFIED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SPLIT-IMAGE STORYTELLING 03: TEXT LEFT | IMAGE RIGHT (RETAIL RELEASE)
+       ========================================================================== -->
+  <section class="split-story-section">
+    <div class="container">
+      <div class="split-story-grid">
+        <!-- Left: Stark Typographic Narrative -->
+        <div class="split-story-text-cell">
+          <div class="grid-index">[ 04 / MULTI-BRANCH CONTROL ]</div>
+          <h2 style="font-size: 36px; line-height: 1.1; margin-bottom: 16px; text-transform: uppercase;">
+            Zero-Leakage Merchandising Across Every Store.
+          </h2>
+          <p style="font-size: 15.5px; color: var(--ink-secondary); line-height: 1.65; margin-bottom: 16px;">
+            Whether you operate 22 supermarket branches or 140 quick-service outlets, finance teams at headquarters gain live line-item visibility into every regional store delivery.
+          </p>
+          <p style="font-size: 15.5px; color: var(--ink-secondary); line-height: 1.65;">
+            Duplicate supplier invoices, unapproved price escalations, and ghost deliveries are blocked automatically with audit-ready Debit Notes attached to every vendor statement.
+          </p>
+
+          <div class="mini-discrepancy-table">
+            <div class="mini-row" style="background: #FFFFFF; font-weight: 700;">
+              <span>FOODCO NIGERIA (RC 278149):</span>
+              <span class="mono">22+ STORES MONITORED</span>
+            </div>
+            <div class="mini-row" style="font-weight: 700;">
+              <span>SUNDRY FOODS (RC 498703):</span>
+              <span class="mono">140+ OUTLETS LIVE</span>
+            </div>
+            <div class="mini-row" style="background: #FFFFFF; font-weight: 700;">
+              <span>DUPLICATE PAYOUT RATE:</span>
+              <span class="mono" style="color: var(--swiss-green);">0.00% BLOCKED</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Full-Bleed Documentary Photo -->
+        <div class="split-story-img-cell">
+          <img src="assets/img/retail_real.jpg" alt="Retail Supermarket Stocked Inventory Aisles" loading="lazy">
+          <div class="split-img-overlay-stamp">
+            <span>[ BRANCH #04 &bull; SHELF RELEASE ]</span>
+          </div>
+          <div class="split-img-overlay-bottom">
+            <span>VERIFIED INVENTORY COSTING</span>
+            <span class="mono" style="color: var(--swiss-red-bright);">CLEARED FOR ERP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       THE 3-WAY RECONCILIATION TRIPTYCH (INTERACTIVE COMPARATOR)
+       ========================================================================== -->
+  <section class="triptych-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="grid-index">[ 03 / COMPARATIVE LOGIC ]</div>
+        <h2 class="section-title">The Three-Way Reconciliation Triptych</h2>
+        <p>
+          See how Vouchra cross-checks the supplier's electronic bill against the physical receiving waybill signed at your warehouse door, powered by deterministic accounting rules and Azure AI Document Intelligence.
+        </p>
+      </div>
+
+      <!-- Tab Controls -->
+      <div class="triptych-tabs-row">
+        <button class="triptych-tab-btn active" data-scenario="shortfall">[ 01 ] QUANTITY SHORTFALL (-8 BAGS)</button>
+        <button class="triptych-tab-btn" data-scenario="price">[ 02 ] PRICE CREEP (+₦5,500/CAN)</button>
+        <button class="triptych-tab-btn" data-scenario="duplicate">[ 03 ] DUPLICATE INVOICE CLAIM</button>
+        <button class="triptych-tab-btn" data-scenario="clean">[ 04 ] CLEAN 100% MATCH</button>
+      </div>
+
+      <!-- Stage Grid -->
+      <div class="triptych-stage-grid">
+        <!-- Col 1: Invoice -->
+        <div class="triptych-column">
+          <div class="triptych-col-head">
+            <span class="triptych-col-name">[ A ] SUPPLIER INVOICE</span>
+            <span class="mono" style="font-size: 10px; color: var(--ink-muted);">PDF EXTRACT</span>
+          </div>
+          <div id="triptych-inv-line" class="triptych-card-item cleared">
+            <div style="font-size: 13px; font-weight: 700;">All-Purpose Flour 50kg — 100 Bags @ ₦42,000</div>
+            <div class="mono" style="font-size: 11.5px; color: var(--ink-muted);">Total Invoiced: ₦4,200,000</div>
+          </div>
+          <p style="font-size: 12px; color: var(--ink-muted); margin-top: auto;">
+            Extracted via Azure AI Document Intelligence layout model from supplier email attachment.
+          </p>
+        </div>
+
+        <!-- Col 2: Engine -->
+        <div class="triptych-column engine-center">
+          <div class="triptych-col-head">
+            <span class="triptych-col-name" style="color: var(--swiss-red);">[ B ] VOUCHRA DETERMINISTIC ENGINE</span>
+            <span class="mono" style="font-size: 10px; color: var(--swiss-red);">ACTIVE RULE</span>
+          </div>
+          <div id="triptych-engine-result" class="triptych-card-item" style="border: 2px solid var(--swiss-red); background: #FFFFFF;">
+            <div style="font-size: 13px; font-weight: 800; color: var(--swiss-red); text-transform: uppercase; margin-bottom: 4px;">
+              Quantity Shortfall Detected
+            </div>
+            <div style="font-size: 12px; color: var(--ink-secondary); line-height: 1.5;">
+              Supplier billed for 100 bags, but receiving gate only signed for 92 bags. Auto-generating Debit Note DN-8821 for ₦336,000 deduction.
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
+            <div class="mono" style="font-size: 10.5px; color: var(--ink-muted);">• RULE 1: Line Item Unit Count Check (Tolerance: 0%)</div>
+            <div class="mono" style="font-size: 10.5px; color: var(--ink-muted);">• RULE 2: Contract Price Ceiling Verification</div>
+          </div>
+        </div>
+
+        <!-- Col 3: Waybill -->
+        <div class="triptych-column">
+          <div class="triptych-col-head">
+            <span class="triptych-col-name">[ C ] GOODS RECEIVED NOTE</span>
+            <span class="mono" style="font-size: 10px; color: var(--ink-muted);">GATE STAMP</span>
+          </div>
+          <div id="triptych-grn-line" class="triptych-card-item flagged">
+            <div style="font-size: 13px; font-weight: 700;">Signed Goods Received Note — 92 Bags Counted</div>
+            <div class="mono" style="font-size: 11.5px; color: var(--swiss-red);">Store Gate Stamp #04: -8 Bags Short</div>
+          </div>
+          <p style="font-size: 12px; color: var(--ink-muted); margin-top: auto;">
+            Physical delivery note photographed at unloading bay. Handwritten receiver count verified.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       TRIPLE-PHOTO PROCESS SPREAD (AUTHENTIC FRESH PHOTOS, NEVER IN CLEARPORT)
+       ========================================================================== -->
+  <section class="triple-photo-section">
+    <div class="container">
+      <div style="padding: 48px 0 24px;">
+        <div class="grid-index">[ 04 / SUPPLY CHAIN LIFECYCLE ]</div>
+        <h2 style="font-size: 32px; text-transform: uppercase;">From Regional Freight Terminal to Retail Shelf</h2>
+      </div>
+
+      <div class="triple-photo-grid">
+        <!-- Phase 1: Real Freight Delivery Dock -->
+        <div class="photo-phase-card">
+          <div class="phase-img-wrap">
+            <img src="assets/img/truck_delivery.jpg" alt="Distribution Center Freight Truck Intake Loading Bay" loading="lazy">
+            <span class="phase-badge">[ PHASE 01 ] FREIGHT INTAKE</span>
+          </div>
+          <div class="phase-text-box">
+            <h3 class="phase-title">Bulk Pallet Discharge</h3>
+            <p class="phase-desc">
+              Containerized freight unloads at the central logistics terminal. Delivery drivers present carbon-copy manifests before gate clearance.
+            </p>
+          </div>
+        </div>
+
+        <!-- Phase 2: Real Warehouse with Forklift -->
+        <div class="photo-phase-card">
+          <div class="phase-img-wrap">
+            <img src="assets/img/warehouse_real.jpg" alt="Active Warehouse Pallet Staging and Forklift" loading="lazy">
+            <span class="phase-badge">[ PHASE 02 ] DOCK RECONCILIATION</span>
+          </div>
+          <div class="phase-text-box">
+            <h3 class="phase-title">Optical AI Verification</h3>
+            <p class="phase-desc">
+              Receiving supervisor snaps the gate waybill via mobile bot. Azure AI matches item codes and quantities against the active purchase contract.
+            </p>
+          </div>
+        </div>
+
+        <!-- Phase 3: Real Supermarket Grocery Aisles -->
+        <div class="photo-phase-card">
+          <div class="phase-img-wrap">
+            <img src="assets/img/supermarket_real.jpg" alt="Supermarket Store Grocery Aisles" loading="lazy">
+            <span class="phase-badge">[ PHASE 03 ] RETAIL RELEASE</span>
+          </div>
+          <div class="phase-text-box">
+            <h3 class="phase-title">Zero-Leakage Merchandising</h3>
+            <p class="phase-desc">
+              Stock releases to supermarket shelves with verified inventory costs. Automated debit notes deduct unreceived units before AP payout.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       THE 4 OPERATIONAL LEAKAGES SOLVED (THE PROBLEM)
+       ========================================================================== -->
+  <section class="leakage-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="grid-index">[ 05 / OPERATIONAL RISK ]</div>
+        <h2 class="section-title">The Four Points of Procurement Capital Leakage</h2>
+        <p>In high-volume distribution and retail operations, accounts payable teams approve invoices under time pressure. Here is where margin quietly drains:</p>
+      </div>
+
+      <div class="leakage-grid">
+        <div class="leakage-module">
+          <span class="leakage-coord">[ 01 / SHORTFALL ]</span>
+          <h3 class="leakage-title">Short Deliveries Billed in Full</h3>
+          <p class="leakage-text">
+            A supplier delivers 92 bags instead of 100 due to plant stockouts. The receiving clerk marks the shortfall on paper, but headquarters accounting pays the original 100-bag bill weeks later.
+          </p>
+        </div>
+
+        <div class="leakage-module">
+          <span class="leakage-coord">[ 02 / PRICE HIKE ]</span>
+          <h3 class="leakage-title">Unapproved Unit Price Creep</h3>
+          <p class="leakage-text">
+            Suppliers sneak 5% to 15% unit price increases onto invoices without purchase order amendments, banking on busy finance staff approving the total balance without recalculating unit rates.
+          </p>
+        </div>
+
+        <div class="leakage-module">
+          <span class="leakage-coord">[ 03 / DUPLICATION ]</span>
+          <h3 class="leakage-title">Multi-Channel Duplicate Billing</h3>
+          <p class="leakage-text">
+            The same supplier invoice sent via WhatsApp, emailed to Accounts, and hand-delivered to a branch manager gets paid twice when different clerks process separate weekly batches.
+          </p>
+        </div>
+
+        <div class="leakage-module">
+          <span class="leakage-coord">[ 04 / DELAY ]</span>
+          <h3 class="leakage-title">5-Day Manual Matching Latency</h3>
+          <p class="leakage-text">
+            Manual invoice reconciliation takes days per batch, delaying vendor payment schedules, damaging credit terms, and tying up key accounting talent in manual spreadsheet cross-referencing.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MATHEMATICAL ROI CALCULATOR
+       ========================================================================== -->
+  <section class="calc-section">
+    <div class="container">
+      <div class="calc-box">
+        <div class="calc-left">
+          <div class="grid-index">[ 06 / QUANTITATIVE RETURN ]</div>
+          <h2 style="font-size: 32px; line-height: 1.1; margin-bottom: 12px;">Calculate Prevented Capital Leakage</h2>
+          <p>
+            Adjust the slider to your enterprise’s monthly vendor bill volume to calculate direct prevented overbilling and reclaimed audit hours.
+          </p>
+
+          <div class="calc-slider-wrap">
+            <div class="calc-slider-header">
+              <span>Monthly Vendor Bills & Waybills</span>
+              <strong id="calc-bill-count">2,000 bills / mo</strong>
+            </div>
+            <input type="range" id="calc-slider" class="swiss-slider" min="200" max="10000" step="100" value="2000">
+          </div>
+        </div>
+
+        <div class="calc-right">
+          <div class="calc-kpi-block">
+            <span class="calc-kpi-label">Prevented Monthly Overbilling</span>
+            <span id="calc-naira-saved" class="calc-kpi-val">₦36.5M</span>
+            <span id="calc-dollar-saved" class="mono" style="font-size: 13.5px; color: var(--ink-secondary);">~$24,320 saved each month</span>
+          </div>
+
+          <div class="calc-kpi-block" style="padding-top: 24px; border-top: var(--grid-line);">
+            <span class="calc-kpi-label">Accounts Payable Hours Saved</span>
+            <span id="calc-hours-saved" class="mono" style="font-size: 28px; font-weight: 800; color: var(--ink);">460 hrs / mo</span>
+            <span style="font-size: 12.5px; color: var(--ink-muted);">Equivalent to 2.8 full-time internal auditors</span>
+          </div>
+
+          <a href="signup.html" class="btn-swiss-primary" style="margin-top: 16px; justify-content: center;">
+            <span>Lock In These Audit Controls [ &rarr; ]</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       TRANSPARENT PRICING GRID (3 COLUMNS)
+       ========================================================================== -->
+  <section class="pricing-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="grid-index">[ 07 / SUBSCRIPTION PLANS ]</div>
+        <h2 class="section-title">Transparent Enterprise Pricing</h2>
+        <p>Simple monthly tiers in USD. Every plan pays for itself within the first 48 hours of prevented delivery shortfalls.</p>
+      </div>
+
+      <div class="pricing-matrix">
+        <!-- Starter Tier -->
+        <div class="pricing-cell">
+          <div class="tier-code">[ PLAN 01 ]</div>
+          <div class="tier-name">Starter</div>
+          <div class="tier-desc">For single-store retailers, bakeries, and local wholesalers.</div>
+          <div class="tier-price-row">
+            <span class="tier-currency">$</span>
+            <span class="tier-amount">89</span>
+            <span class="mono" style="font-size: 13px; color: var(--ink-muted);">/ month</span>
+          </div>
+          <div class="tier-features-list">
+            <div class="tier-feature-item">Up to 500 vendor packets / mo</div>
+            <div class="tier-feature-item">2-way invoice-to-GRN matching</div>
+            <div class="tier-feature-item">Duplicate bill detection</div>
+            <div class="tier-feature-item">3 reviewer seats</div>
+          </div>
+          <a href="signup.html?plan=starter" class="btn-swiss-secondary" style="width: 100%; text-align: center;">Select Starter</a>
+        </div>
+
+        <!-- Growth Tier (Featured) -->
+        <div class="pricing-cell featured">
+          <div class="tier-code" style="color: var(--swiss-red);">[ PLAN 02 / RECOMMENDED ]</div>
+          <div class="tier-name">Growth</div>
+          <div class="tier-desc">For multi-unit food chains, supermarket networks, and regional distributors.</div>
+          <div class="tier-price-row">
+            <span class="tier-currency">$</span>
+            <span class="tier-amount" style="color: var(--swiss-red);">249</span>
+            <span class="mono" style="font-size: 13px; color: var(--ink-muted);">/ month</span>
+          </div>
+          <div class="tier-features-list">
+            <div class="tier-feature-item">Up to 3,000 vendor packets / mo</div>
+            <div class="tier-feature-item">Full 3-way match (PO + GRN + Invoice)</div>
+            <div class="tier-feature-item">Automated Debit Note issuance</div>
+            <div class="tier-feature-item">WhatsApp gate photo ingest bot</div>
+            <div class="tier-feature-item">10 seats + Multi-store support</div>
+          </div>
+          <a href="signup.html?plan=growth" class="btn-swiss-primary" style="width: 100%; text-align: center;">Start 14-Day Free Audit</a>
+        </div>
+
+        <!-- Enterprise Tier -->
+        <div class="pricing-cell">
+          <div class="tier-code">[ PLAN 03 ]</div>
+          <div class="tier-name">Enterprise</div>
+          <div class="tier-desc">For national retail supermarket networks and nationwide FMCG brand owners.</div>
+          <div class="tier-price-row">
+            <span class="tier-currency">$</span>
+            <span class="tier-amount">680</span>
+            <span class="mono" style="font-size: 13px; color: var(--ink-muted);">/ month</span>
+          </div>
+          <div class="tier-features-list">
+            <div class="tier-feature-item">Unlimited monthly vendor packets</div>
+            <div class="tier-feature-item">Two-way ERP bi-directional sync (SAP/Sage)</div>
+            <div class="tier-feature-item">Custom contract tolerance threshold rules</div>
+            <div class="tier-feature-item">Dedicated AP account director & 99.98% SLA</div>
+          </div>
+          <a href="signup.html?plan=enterprise" class="btn-swiss-secondary" style="width: 100%; text-align: center;">Contact Enterprise</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       LEADERSHIP TEAM (4-COLUMN COORDINATE GRID)
+       ========================================================================== -->
+  <section class="team-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="grid-index">[ 08 / EXECUTIVE LEADERSHIP ]</div>
+        <h2 class="section-title">Built by Procurement Auditors & Document AI Engineers</h2>
+        <p>Senior accounting control expertise combined with production optical intelligence models.</p>
+      </div>
+
+      <div class="team-grid">
+        <!-- CEO -->
+        <div class="team-cell">
+          <div class="team-img-wrap">
+            <img src="assets/img/ceo-chinedu.jpg" alt="Chinedu Okafor, CEO">
+          </div>
+          <div class="team-info">
+            <span class="team-name">Chinedu Okafor</span>
+            <span class="team-role">Chief Executive Officer</span>
+            <p class="team-bio">
+              Former Lead of Procurement Operations at BUA Foods; ex-PwC Audit Senior. BSc Economics (UNILAG), ACA.
+            </p>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="team-link">
+              <span>LinkedIn Profile</span> &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- CTO -->
+        <div class="team-cell">
+          <div class="team-img-wrap">
+            <img src="assets/img/cto-damilola.jpg" alt="Damilola Adeleke, CTO">
+          </div>
+          <div class="team-info">
+            <span class="team-name">Damilola Adeleke</span>
+            <span class="team-role">Chief Technology Officer</span>
+            <p class="team-bio">
+              Former Senior Staff Machine Learning Engineer at Flutterwave; ex-Andela Fellow. MSc Computer Science (UI).
+            </p>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="team-link">
+              <span>LinkedIn Profile</span> &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- VP Product -->
+        <div class="team-cell">
+          <div class="team-img-wrap">
+            <img src="assets/img/vp-ngozi.jpg" alt="Ngozi Eze, VP Product">
+          </div>
+          <div class="team-info">
+            <span class="team-name">Ngozi Eze</span>
+            <span class="team-role">VP, Product Management</span>
+            <p class="team-bio">
+              Former Head of Accounts Payable Systems at Shoprite Nigeria. Led electronic invoice processing across 25+ stores.
+            </p>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="team-link">
+              <span>LinkedIn Profile</span> &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- Head of Audit -->
+        <div class="team-cell">
+          <div class="team-img-wrap">
+            <img src="assets/img/head-audit.jpg" alt="Tochukwu Okereke, Head of Audit">
+          </div>
+          <div class="team-info">
+            <span class="team-name">Tochukwu Okereke</span>
+            <span class="team-role">Head of Enterprise Audit</span>
+            <p class="team-bio">
+              Fellow Chartered Accountant (FCA). 11 years managing accounts payable and internal controls across Nigerian retail chains.
+            </p>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="team-link">
+              <span>LinkedIn Profile</span> &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       THE DRAMATIC FOOTER (MONUMENTAL ARCHITECTURAL FINISH)
+       ========================================================================== -->
+  <footer class="dramatic-footer">
+    <div class="footer-hero-banner">
+      <div class="container">
+        <div class="grid-index" style="color: #FFFFFF;">
+          <span style="color: #FFFFFF;">[ CORPORATE ASSURANCE &bull; RC 1984210 ]</span>
+        </div>
+        <h2 class="footer-hero-statement">
+          Audit Every Waybill. <br>
+          <span class="red">Protect Every Naira.</span>
+        </h2>
+        <p class="footer-hero-sub">
+          The deterministic three-way matching standard for African retail supermarkets, food chains, and FMCG distributors. Powered by Microsoft Azure.
+        </p>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+          <a href="signup.html" class="btn-swiss-primary" style="background: var(--swiss-red); border-color: var(--swiss-red);">
+            <span>Start Free Audit [ &rarr; ]</span>
+          </a>
+          <a href="dashboard.html?packet=VCH-8821" class="btn-swiss-secondary" style="border-color: rgba(255, 255, 255, 0.3); color: #FFFFFF;">
+            <span>Live Specimen Inspection</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="footer-matrix-dark">
+        <div class="footer-dark-cell">
+          <img src="assets/img/logo-white.svg?v=2" alt="Vouchra" style="height: 24px; margin-bottom: 6px;">
+          <p style="font-size: 13px; color: #A1A1AA; line-height: 1.6;">
+            Automated three-way invoice, physical goods received note, and purchase contract reconciliation. Built in Sabo Yaba, Lagos.
+          </p>
+          <div class="mono" style="font-size: 11px; color: #FFFFFF; line-height: 1.6;">
+            <strong>VOUCHRA TECHNOLOGIES LTD</strong><br>
+            CAC RC 1984210 &bull; TIN 24891044-0001<br>
+            Plot 14, Commercial Avenue, Sabo Yaba, Lagos<br>
+            Direct: +234 1 888 4920 &bull; support@vouchra.com
+          </div>
+        </div>
+
+        <div class="footer-dark-cell">
+          <div class="footer-dark-title">[ 01 ] PLATFORM</div>
+          <div class="footer-dark-nav">
+            <a href="dashboard.html?packet=VCH-8821">Live Match Desk</a>
+            <a href="pricing.html">Subscription Pricing</a>
+            <a href="security.html">Azure Cloud Infrastructure</a>
+            <a href="about.html">Founders & Story</a>
+            <a href="signup.html">Open AP Workspace</a>
+          </div>
+        </div>
+
+        <div class="footer-dark-cell">
+          <div class="footer-dark-title">[ 02 ] STATUTORY & GOVERNANCE</div>
+          <div class="footer-dark-nav">
+            <a href="legal.html#privacy">NDPR Data Privacy</a>
+            <a href="security.html#soc2">SOC 2 Type II Controls</a>
+            <a href="legal.html#terms">Master Service Agreement</a>
+            <a href="legal.html#privacy">Data Sovereignty</a>
+            <a href="legal.html#sla">99.9% Uptime Guarantee</a>
+          </div>
+        </div>
+
+        <div class="footer-dark-cell">
+          <div class="footer-dark-title">[ 03 ] INFRASTRUCTURE</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; font-family: var(--font-mono); font-size: 11px;">
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: #71717A;">MATCH CLUSTER:</span>
+              <span style="color: var(--swiss-green); font-weight: 700;">OPERATIONAL</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: #71717A;">AZURE OCR:</span>
+              <span style="color: var(--swiss-green); font-weight: 700;">99.98% UPTIME</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: #71717A;">CLOUD REGION:</span>
+              <span style="color: #FFFFFF;">WEST EUROPE (AKS)</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: #71717A;">AVG LATENCY:</span>
+              <span style="color: #FFFFFF;">1.18 SECONDS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-giant-wordmark-bar">
+        <div class="footer-giant-wordmark">
+          VOUCHRA. RECONCILIATION.
+        </div>
+      </div>
+
+      <div class="footer-dark-bottom">
+        <div>&copy; 2026 VOUCHRA TECHNOLOGIES LTD (RC 1984210). ALL RIGHTS RESERVED.</div>
+        <div style="display: flex; gap: 24px;">
+          <a href="legal.html#privacy" style="color: #A1A1AA;">Privacy Policy</a>
+          <a href="legal.html#terms" style="color: #A1A1AA;">Terms of Service</a>
+          <a href="security.html" style="color: #A1A1AA;">Security Whitepaper</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/motion.js"></script>
+</body>
+</html>

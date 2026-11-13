@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing & Subscription Matrix — Vouchra</title>
+  <meta name="description" content="Transparent, predictable subscription plans for African enterprise vendor bill and waybill reconciliation.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo-mark.svg?v=2">
+  <link rel="stylesheet" href="assets/vouchra.css">
+  <style>
+    .page-hero {
+      padding: 64px 0 48px;
+      border-bottom: var(--grid-line-bold);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: var(--grid-line-dark);
+      margin-top: 40px;
+    }
+
+    .faq-cell {
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .faq-cell:nth-child(odd) {
+      border-right: var(--grid-line-dark);
+    }
+
+    .faq-cell:nth-child(-n+2) {
+      border-bottom: var(--grid-line-dark);
+    }
+
+    @media (max-width: 800px) {
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+      .faq-cell:nth-child(odd) {
+        border-right: none;
+      }
+      .faq-cell:not(:last-child) {
+        border-bottom: var(--grid-line-dark);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress-line"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner container">
+      <div class="brand-cell">
+        <a href="index.html">
+          <img src="assets/img/logo.svg?v=2" alt="Vouchra" class="brand-logo">
+        </a>
+      </div>
+
+      <nav class="nav-matrix">
+        <a href="index.html" class="nav-item">Platform</a>
+        <a href="dashboard.html?packet=VCH-8821" class="nav-item">Audit Desk</a>
+        <a href="pricing.html" class="nav-item active">Pricing</a>
+        <a href="about.html" class="nav-item">Leadership</a>
+        <a href="security.html" class="nav-item">Security</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn-swiss-secondary" style="border:none; padding: 6px 12px;">Sign In</a>
+        <a href="signup.html" class="btn-swiss-primary">
+          <span>Audit Packet &rarr;</span>
+        </a>
+      </div>
+
+      <button class="mobile-hamburger" aria-label="Open Navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-backdrop"></div>
+  <aside class="mobile-drawer">
+    <div>
+      <div class="drawer-top">
+        <img src="assets/img/logo.svg?v=2" alt="Vouchra" style="height: 24px;">
+        <button class="drawer-close" aria-label="Close Menu" style="background:none; border:none; font-size:26px; cursor:pointer;">&times;</button>
+      </div>
+      <nav class="drawer-nav">
+        <a href="index.html"><span>[ 01 ] PLATFORM OVERVIEW</span> &rarr;</a>
+        <a href="dashboard.html?packet=VCH-8821"><span>[ 02 ] LIVE AUDIT DESK</span> &rarr;</a>
+        <a href="pricing.html"><span>[ 03 ] SUBSCRIPTION PRICING</span> &rarr;</a>
+        <a href="about.html"><span>[ 04 ] FOUNDERS & STORY</span> &rarr;</a>
+        <a href="security.html"><span>[ 05 ] SECURITY & AZURE</span> &rarr;</a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="grid-index">[ 03 / TIER SPECIFICATIONS ]</div>
+      <h1 class="hero-title" style="font-size: 52px; margin-bottom: 16px;">
+        Transparent B2B Pricing. <br>
+        <span class="red">Zero Hidden Surcharges.</span>
+      </h1>
+      <p style="font-size: 16.5px; color: var(--ink-secondary); max-width: 640px;">
+        Every tier includes optical scanning, duplicate protection, and automated debit note generation. Most clients recoup their entire monthly fee within their first 2 prevented delivery shortfalls.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pricing Matrix -->
+  <section class="pricing-section" style="border-bottom: var(--grid-line-bold);">
+    <div class="container">
+      <div class="pricing-matrix">
+        <!-- Starter Tier -->
+        <div class="pricing-cell">
+          <div class="tier-code">[ PLAN 01 ]</div>
+          <div class="tier-name">Starter</div>
+          <div class="tier-desc">For single-store retailers, bakeries, and local wholesalers.</div>
+          <div class="tier-price-row">
+            <span class="tier-currency">$</span>
+            <span class="tier-amount">89</span>
+            <span class="mono" style="font-size: 13px; color: var(--ink-muted);">/ month</span>
+          </div>
+          <div class="tier-features-list">
+            <div class="tier-feature-item">Up to 500 vendor packets / mo</div>
+            <div class="tier-feature-item">2-way invoice-to-GRN matching</div>
+            <div class="tier-feature-item">Duplicate bill detection</div>
+            <div class="tier-feature-item">3 reviewer seats</div>
+          </div>
+          <a href="signup.html?plan=starter" class="btn-swiss-secondary" style="width: 100%; text-align: center;">Select Starter</a>
+        </div>
+
+        <!-- Growth Tier (Featured) -->
+        <div class="pricing-cell featured">
+          <div class="tier-code" style="color: var(--swiss-red);">[ PLAN 02 / RECOMMENDED ]</div>
+          <div class="tier-name">Growth</div>
+          <div class="tier-desc">For multi-unit food chains, supermarket networks, and regional distributors.</div>
+          <div class="tier-price-row">
+            <span class="tier-currency">$</span>
+            <span class="tier-amount" style="color: var(--swiss-red);">249</span>
+            <span class="mono" style="font-size: 13px; color: var(--ink-muted);">/ month</span>
+          </div>
+          <div class="tier-features-list">
+            <div class="tier-feature-item">Up to 3,000 vendor packets / mo</div>
+            <div class="tier-feature-item">Full 3-way match (PO + GRN + Invoice)</div>
+            <div class="tier-feature-item">Automated Debit Note issuance</div>
+            <div class="tier-feature-item">WhatsApp gate photo ingest bot</div>
+            <div class="tier-feature-item">10 seats + Multi-store support</div>
+          </div>
+          <a href="signup.html?plan=growth" class="btn-swiss-primary" style="width: 100%; text-align: center;">Start 14-Day Free Audit</a>
+        </div>
+
+        <!-- Enterprise Tier -->
+        <div class="pricing-cell">
+          <div class="tier-code">[ PLAN 03 ]</div>
+          <div class="tier-name">Enterprise</div>
+          <div class="tier-desc">For national retail supermarket networks and nationwide FMCG brand owners.</div>
+          <div class="tier-price-row">
+            <span class="tier-currency">$</span>
+            <span class="tier-amount">680</span>
+            <span class="mono" style="font-size: 13px; color: var(--ink-muted);">/ month</span>
+          </div>
+          <div class="tier-features-list">
+            <div class="tier-feature-item">Unlimited monthly vendor packets</div>
+            <div class="tier-feature-item">Two-way ERP bi-directional sync (SAP/Sage)</div>
+            <div class="tier-feature-item">Custom contract tolerance threshold rules</div>
+            <div class="tier-feature-item">Dedicated AP account director & 99.98% SLA</div>
+          </div>
+          <a href="signup.html?plan=enterprise" class="btn-swiss-secondary" style="width: 100%; text-align: center;">Contact Enterprise</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section style="padding: 80px 0; border-bottom: var(--grid-line-bold);">
+    <div class="container">
+      <div class="section-head">
+        <div class="grid-index">[ 06 / OPERATIONAL SPECIFICATIONS ]</div>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-cell">
+          <h3 style="font-size: 16px; margin-bottom: 6px;">How does Vouchra handle carbon-copy or folded paper waybills?</h3>
+          <p>
+            Our Azure AI Document Intelligence model is trained specifically on handwritten gate stamps, folded receipt carbon copies, and smartphone photos captured under warehouse dock lighting. It extracts line items with 99.4% field accuracy.
+          </p>
+        </div>
+
+        <div class="faq-cell">
+          <h3 style="font-size: 16px; margin-bottom: 6px;">Do gate receiving clerks require complex software training?</h3>
+          <p>
+            No. Gate clerks don't even need computers. They simply snap a photograph of the stamped goods received note using our WhatsApp Ingest Bot or mobile Progressive Web App. The AI matches it against the vendor's PO and invoice automatically.
+          </p>
+        </div>
+
+        <div class="faq-cell">
+          <h3 style="font-size: 16px; margin-bottom: 6px;">Does Vouchra integrate with our existing accounting ERP?</h3>
+          <p>
+            Yes. Vouchra provides bi-directional connectors for SAP Business One, Oracle NetSuite, Sage Evolution, QuickBooks Online, and Microsoft Dynamics 365, alongside comprehensive REST APIs and daily CSV reconciliation exports.
+          </p>
+        </div>
+
+        <div class="faq-cell">
+          <h3 style="font-size: 16px; margin-bottom: 6px;">Can Nigerian corporate clients settle subscriptions in Naira (₦)?</h3>
+          <p>
+            Yes. While plans are denominated in USD for regional Pan-African consistency, Nigerian clients can settle monthly or annually in Naira at prevailing official NAFEM rates via commercial bank transfer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dramatic Architectural Footer -->
+  <footer class="dramatic-footer">
+    <div class="footer-hero-banner">
+      <div class="container">
+        <div class="grid-index" style="color: #FFFFFF;">
+          <span style="color: #FFFFFF;">[ CORPORATE ASSURANCE &bull; RC 1984210 ]</span>
+        </div>
+        <h2 class="footer-hero-statement">
+          Audit Every Waybill. <br>
+          <span class="red">Protect Every Naira.</span>
+        </h2>
+        <p class="footer-hero-sub">
+          The deterministic three-way matching standard for African retail supermarkets, food chains, and FMCG distributors. Powered by Microsoft Azure.
+        </p>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+          <a href="signup.html" class="btn-swiss-primary" style="background: var(--swiss-red); border-color: var(--swiss-red);">
+            <span>Start Free Audit [ &rarr; ]</span>
+          </a>
+          <a href="dashboard.html?packet=VCH-8821" class="btn-swiss-secondary" style="border-color: rgba(255, 255, 255, 0.3); color: #FFFFFF;">
+            <span>Live Specimen Inspection</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="footer-matrix-dark">
+        <div class="footer-dark-cell">
+          <img src="assets/img/logo-white.svg?v=2" alt="Vouchra" style="height: 24px; margin-bottom: 6px;">
+          <p style="font-size: 13px; color: #A1A1AA; line-height: 1.6;">
+            Automated three-way invoice, physical goods received note, and purchase contract reconciliation. Built in Sabo Yaba, Lagos.
+          </p>
+          <div class="mono" style="font-size: 11px; color: #FFFFFF; line-height: 1.6;">
+            <strong>VOUCHRA TECHNOLOGIES LTD</strong><br>
+            CAC RC 1984210 &bull; TIN 24891044-0001<br>
+            Plot 14, Commercial Avenue, Sabo Yaba, Lagos<br>
+            Direct: +234 1 888 4920 &bull; support@vouchra.com
+          </div>
+        </div>
+
+        <div class="footer-dark-cell">
+          <div class="footer-dark-title">[ 01 ] PLATFORM</div>
+          <div class="footer-dark-nav">
+            <a href="dashboard.html?packet=VCH-8821">Live Match Desk</a>
+            <a href="pricing.html">Subscription Pricing</a>
+            <a href="security.html">Azure Cloud Infrastructure</a>
+            <a href="about.html">Founders & Story</a>
+            <a href="signup.html">Open AP Workspace</a>
+          </div>
+        </div>
+
+        <div class="footer-dark-cell">
+          <div class="footer-dark-title">[ 02 ] STATUTORY & GOVERNANCE</div>
+          <div class="footer-dark-nav">
+            <a href="legal.html#privacy">NDPR Data Privacy</a>
+            <a href="security.html#soc2">SOC 2 Type II Controls</a>
+            <a href="legal.html#terms">Master Service Agreement</a>
+            <a href="legal.html#privacy">Data Sovereignty</a>
+            <a href="legal.html#sla">99.9% Uptime Guarantee</a>
+          </div>
+        </div>
+
+        <div class="footer-dark-cell">
+          <div class="footer-dark-title">[ 03 ] INFRASTRUCTURE</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; font-family: var(--font-mono); font-size: 11px;">
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: #71717A;">MATCH CLUSTER:</span>
+              <span style="color: var(--swiss-green); font-weight: 700;">OPERATIONAL</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: #71717A;">AZURE OCR:</span>
+              <span style="color: var(--swiss-green); font-weight: 700;">99.98% UPTIME</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: #71717A;">CLOUD REGION:</span>
+              <span style="color: #FFFFFF;">WEST EUROPE (AKS)</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: #71717A;">AVG LATENCY:</span>
+              <span style="color: #FFFFFF;">1.18 SECONDS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-giant-wordmark-bar">
+        <div class="footer-giant-wordmark">
+          VOUCHRA. PRICING.
+        </div>
+      </div>
+
+      <div class="footer-dark-bottom">
+        <div>&copy; 2026 VOUCHRA TECHNOLOGIES LTD (RC 1984210). ALL RIGHTS RESERVED.</div>
+        <div style="display: flex; gap: 24px;">
+          <a href="legal.html#privacy" style="color: #A1A1AA;">Privacy Policy</a>
+          <a href="legal.html#terms" style="color: #A1A1AA;">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/motion.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — Vouchra Audit Desk</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo-mark.svg?v=2">
+  <link rel="stylesheet" href="assets/vouchra.css">
+  <style>
+    .auth-page-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 24px;
+      background: var(--canvas-subtle);
+    }
+
+    .auth-box {
+      width: 100%;
+      max-width: 440px;
+      background: #FFFFFF;
+      border: 2px solid var(--ink);
+      padding: 44px 36px;
+      box-shadow: 8px 8px 0px #0A0A0A;
+    }
+
+    .auth-header {
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .form-group input {
+      padding: 10px 14px;
+      border: 1px solid var(--ink);
+      font-family: var(--font-grotesk);
+      font-size: 14px;
+      outline: none;
+      border-radius: 0;
+    }
+
+    .form-group input:focus {
+      border-color: var(--swiss-red);
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress-line"></div>
+
+  <div class="auth-page-wrap">
+    <div class="auth-box">
+      <div class="auth-header">
+        <a href="index.html">
+          <img src="assets/img/logo.svg?v=2" alt="Vouchra" style="height: 28px; display: block; margin-bottom: 16px;">
+        </a>
+        <div class="grid-index">[ AUTHENTICATION DESK ]</div>
+        <h1 style="font-size: 24px; text-transform: uppercase;">Corporate Sign In</h1>
+        <p style="font-size: 13.5px; color: var(--ink-secondary); margin-top: 4px;">
+          Access your three-way invoice reconciliation workspace.
+        </p>
+      </div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label>Work Email Address</label>
+          <input type="email" id="login-email" required value="chinedu@vouchra.com">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 24px;">
+          <label>Password</label>
+          <input type="password" required value="••••••••••••">
+        </div>
+
+        <button type="submit" class="btn-swiss-primary" style="width: 100%; justify-content: center; padding: 12px;">
+          <span>Sign In to Audit Desk [ &rarr; ]</span>
+        </button>
+      </form>
+
+      <div style="margin-top: 24px; font-size: 12.5px; color: var(--ink-muted); text-align: center;">
+        Need an enterprise audit account? <a href="signup.html" style="color: var(--swiss-red); font-weight: 700;">Start Free Audit</a>
+      </div>
+    </div>
+
+    <div style="margin-top: 24px; font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted);">
+      &copy; 2026 VOUCHRA TECHNOLOGIES LTD (CAC RC 1984210). SABO YABA, LAGOS.
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      localStorage.setItem('vouchra_auth_session', 'true');
+      localStorage.setItem('vouchra_user_name', 'Chinedu Okafor');
+      localStorage.setItem('vouchra_user_company', 'BUA FMCG Procurement');
+      window.location.href = 'dashboard.html';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vouchra — Three-Way Match & Debit Note Desk</title>
+  <meta name="description" content="Interactive 3-way vendor bill, goods received note, and purchase contract reconciliation desk.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo-mark.svg?v=2">
+  <link rel="stylesheet" href="assets/vouchra.css">
+  <style>
+    .desk-wrapper {
+      padding: 48px 0 80px;
+      min-height: 85vh;
+    }
+
+    .desk-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 24px;
+      border-bottom: var(--grid-line-dark);
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .specimen-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: var(--canvas-subtle);
+      border: 1px solid var(--ink-border);
+      border-left: 4px solid var(--swiss-red);
+      margin-bottom: 28px;
+      font-size: 13.5px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .desk-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      border: var(--grid-line-dark);
+    }
+
+    .desk-sidebar {
+      padding: 24px;
+      border-right: var(--grid-line-dark);
+      background: var(--canvas-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .queue-card {
+      padding: 16px;
+      border: var(--grid-line-dark);
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .queue-card.active {
+      border: 2px solid var(--ink);
+      box-shadow: 4px 4px 0px #0A0A0A;
+    }
+
+    .desk-main-panel {
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .packet-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: var(--grid-line-dark);
+      background: var(--canvas-subtle);
+    }
+
+    .kpi-cell {
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .kpi-cell:not(:last-child) {
+      border-right: var(--grid-line-dark);
+    }
+
+    .items-table-wrap {
+      border: var(--grid-line-dark);
+      overflow-x: auto;
+    }
+
+    .swiss-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .swiss-table th {
+      padding: 12px 16px;
+      background: var(--canvas-subtle);
+      border-bottom: var(--grid-line-dark);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      text-align: left;
+    }
+
+    .swiss-table td {
+      padding: 14px 16px;
+      border-bottom: var(--grid-line);
+      color: var(--ink);
+    }
+
+    @media (max-width: 900px) {
+      .desk-grid {
+        grid-template-columns: 1fr;
+      }
+      .desk-sidebar {
+        border-right: none;
+        border-bottom: var(--grid-line-dark);
+      }
+      .packet-kpi-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .kpi-cell:nth-child(2) {
+        border-right: none;
+      }
+      .kpi-cell:nth-child(-n+2) {
+        border-bottom: var(--grid-line-dark);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .desk-main-panel {
+        padding: 20px 16px;
+      }
+      .upload-hero-container {
+        padding: 24px 16px;
+      }
+      .upload-btn-group {
+        flex-direction: column;
+        width: 100%;
+      }
+      .upload-btn-group button {
+        width: 100%;
+      }
+      .packet-kpi-grid {
+        grid-template-columns: 1fr;
+      }
+      .kpi-cell {
+        border-right: none !important;
+        border-bottom: var(--grid-line-dark);
+      }
+      .kpi-cell:last-child {
+        border-bottom: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress-line"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner container">
+      <div class="brand-cell">
+        <a href="index.html">
+          <img src="assets/img/logo.svg?v=2" alt="Vouchra" class="brand-logo">
+        </a>
+      </div>
+
+      <nav class="nav-matrix">
+        <a href="index.html" class="nav-item">Platform</a>
+        <a href="dashboard.html" class="nav-item active">Audit Desk</a>
+        <a href="pricing.html" class="nav-item">Pricing</a>
+        <a href="about.html" class="nav-item">Leadership</a>
+        <a href="security.html" class="nav-item">Security</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="btn-signout" class="btn-swiss-secondary auth-only" style="border:none; padding: 6px 12px; display:none;">Sign Out</button>
+        <a href="index.html" class="btn-swiss-primary">
+          <span>&larr; Exit to Platform</span>
+        </a>
+      </div>
+
+      <button class="mobile-hamburger" aria-label="Open Navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-backdrop"></div>
+  <aside class="mobile-drawer">
+    <div>
+      <div class="drawer-top">
+        <img src="assets/img/logo.svg?v=2" alt="Vouchra" style="height: 24px;">
+        <button class="drawer-close" aria-label="Close Menu" style="background:none; border:none; font-size:26px; cursor:pointer;">&times;</button>
+      </div>
+      <nav class="drawer-nav">
+        <a href="index.html"><span>[ 01 ] PLATFORM</span> &rarr;</a>
+        <a href="dashboard.html"><span>[ 02 ] AUDIT DESK</span> &rarr;</a>
+        <a href="pricing.html"><span>[ 03 ] PRICING</span> &rarr;</a>
+        <a href="about.html"><span>[ 04 ] LEADERSHIP</span> &rarr;</a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Main Desk Content -->
+  <main class="desk-wrapper">
+    <div class="container">
+      <!-- Title Bar -->
+      <div class="desk-header-bar">
+        <div>
+          <div class="grid-index">[ 02 / RECONCILIATION QUEUE ]</div>
+          <h1 style="font-size: 32px; text-transform: uppercase;">
+            Vendor Audit Desk &bull; <span id="user-greeting" style="font-size: 20px; font-weight: 700; color: var(--ink-secondary);">Guest Specimen Reviewer</span>
+          </h1>
+        </div>
+
+        <div>
+          <button id="btn-open-upload-modal" class="btn-swiss-primary" onclick="document.getElementById('upload-zone-section').scrollIntoView({behavior:'smooth'})">
+            <span>+ Ingest Document Packet</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Specimen Banner (Guest Mode) -->
+      <div id="guest-specimen-banner" class="specimen-banner">
+        <div>
+          <strong style="color: var(--swiss-red);">[ SPECIMEN CASE FILE ]</strong> You are reviewing live sample vendor packet <strong>#VCH-8821</strong> (Flour Mills of Nigeria vs. FoodCo Store #04).
+        </div>
+        <div>
+          <a href="signup.html" class="btn-swiss-primary" style="padding: 6px 14px; font-size: 11px;">Open Your Company Workspace [ &rarr; ]</a>
+        </div>
+      </div>
+
+      <!-- ==========================================================================
+           DEDICATED DOCUMENT UPLOAD ZONE (PROMINENT ON PAGE)
+           ========================================================================== -->
+      <div id="upload-zone-section" class="upload-hero-container">
+        <input type="file" id="file-doc-input" style="display:none;" multiple accept=".pdf,.png,.jpg,.jpeg">
+        
+        <div class="upload-icon-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <h3 class="upload-title">Ingest Vendor Invoices &amp; Physical Waybills</h3>
+          <p class="upload-sub">
+            Drag and drop supplier invoice PDFs, smartphone photos of signed gate delivery notes (GRN), or procurement contracts here.
+          </p>
+        </div>
+
+        <div class="upload-chips-row">
+          <span class="upload-chip">[ SUPPLIER INVOICE PDF ]</span>
+          <span class="upload-chip">[ GATE GRN STAMP PHOTO ]</span>
+          <span class="upload-chip">[ PURCHASE CONTRACT PO ]</span>
+        </div>
+
+        <div class="upload-btn-group">
+          <button id="btn-run-sample-upload" class="btn-swiss-primary" style="background:var(--swiss-red); border-color:var(--swiss-red);">
+            <span>⚡ Run Live Audit with Sample Packet</span>
+          </button>
+          <button id="btn-browse-files" class="btn-swiss-secondary" onclick="document.getElementById('file-doc-input').click()">
+            <span>Browse Local Files...</span>
+          </button>
+        </div>
+
+        <!-- Animated OCR Extraction Progress Bar -->
+        <div id="ocr-progress-box" class="ocr-progress-box">
+          <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:11px;">
+            <span id="ocr-status-text" style="font-weight:700;">AZURE DOCUMENT AI: PARSING LINE ITEMS...</span>
+            <span id="ocr-percent-text" style="color:var(--swiss-red); font-weight:700;">45%</span>
+          </div>
+          <div class="ocr-progress-bar">
+            <div id="ocr-progress-fill" class="ocr-progress-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desk Grid -->
+      <div class="desk-grid">
+        <!-- Sidebar -->
+        <div class="desk-sidebar">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 12px; border-bottom: var(--grid-line-dark);">
+            <span class="mono" style="font-size: 11px; font-weight: 800; text-transform: uppercase;">Active Packets</span>
+            <span id="stats-total-packets" class="mono" style="font-size: 11px; color: var(--swiss-red); font-weight: 700;">1 PACKET</span>
+          </div>
+
+          <div class="queue-card active">
+            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px;">
+              <strong>VCH-8821</strong>
+              <span style="color: var(--swiss-red); font-weight: 700;">FLAGGED</span>
+            </div>
+            <div style="font-size: 13.5px; font-weight: 800;">Flour Mills of Nig Plc</div>
+            <div style="font-size: 11.5px; color: var(--ink-muted);">FoodCo Store #04 (Ibadan)</div>
+            <div class="mono" style="font-size: 12px; font-weight: 800; color: var(--swiss-red); margin-top: 4px;">
+              -₦886,000 LEAKAGE
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Panel -->
+        <div class="desk-main-panel">
+          <!-- Empty State (Shown only if user has 0 packets) -->
+          <div id="empty-ledger-state" style="display: none; flex-direction: column; align-items: center; justify-content: center; padding: 48px 20px; border: 2px dashed var(--ink-border); text-align: center;">
+            <div class="mono" style="font-size: 12px; font-weight: 800; color: var(--swiss-red); margin-bottom: 8px;">[ 0 PACKETS RECORDED ]</div>
+            <h3 style="font-size: 20px; text-transform: uppercase; margin-bottom: 6px;">Workspace Ready for First Vendor Packet</h3>
+            <p style="font-size: 13.5px; color: var(--ink-secondary); max-width: 440px; margin-bottom: 18px;">
+              Use the upload zone above or run the sample packet to verify the 3-way matching engine.
+            </p>
+            <button class="btn-swiss-primary" onclick="document.getElementById('btn-run-sample-upload').click()">
+              <span>⚡ Load Sample Vendor Packet</span>
+            </button>
+          </div>
+
+          <!-- Active Packet Detail View -->
+          <div id="packet-detail-view" style="display: flex; flex-direction: column; gap: 24px;">
+            <!-- KPI Strip -->
+            <div class="packet-kpi-grid">
+              <div class="kpi-cell">
+                <span class="mono" style="font-size: 10px; color: var(--ink-muted); text-transform: uppercase;">Vendor Corporate</span>
+                <span id="packet-vendor-name" style="font-size: 14.5px; font-weight: 800;">Flour Mills of Nigeria Plc</span>
+              </div>
+              <div class="kpi-cell">
+                <span class="mono" style="font-size: 10px; color: var(--ink-muted); text-transform: uppercase;">Receiving Unit</span>
+                <span id="packet-buyer-name" style="font-size: 14.5px; font-weight: 800;">FoodCo Store #04 (Ibadan)</span>
+              </div>
+              <div class="kpi-cell">
+                <span class="mono" style="font-size: 10px; color: var(--ink-muted); text-transform: uppercase;">Invoice &bull; GRN Ref</span>
+                <span class="mono" style="font-size: 12.5px; font-weight: 700;">
+                  <span id="packet-inv-no">FMN-99042</span> &bull; <span id="packet-waybill-no">GRN-4418</span>
+                </span>
+              </div>
+              <div class="kpi-cell" style="background: #FFFFFF;">
+                <span class="mono" style="font-size: 10px; color: var(--swiss-red); text-transform: uppercase; font-weight: 700;">Prevented Leakage</span>
+                <span id="packet-leakage" class="mono" style="font-size: 20px; font-weight: 900; color: var(--swiss-red);">₦886,000</span>
+              </div>
+            </div>
+
+            <!-- Exception Card -->
+            <div class="variance-action-card">
+              <div class="variance-badge">
+                <span id="packet-status-badge">■ ACTION REQUIRED: 2 MISMATCH EXCEPTIONS FLAGGED</span>
+              </div>
+              <div class="variance-headline">
+                Discrepancy Resolution & Automated Debit Note Generation
+              </div>
+              <div class="variance-breakdown">
+                <strong>1. Quantity Shortfall:</strong> Invoiced for 100 bags of Flour, but gate delivery waybill was signed for 92 bags (-8 bags short = ₦380,000 unreceived).<br>
+                <strong>2. Unit Price Escalation:</strong> Invoiced at ₦47,500/bag vs. agreed purchase contract PO-2026-8812 price of ₦42,000/bag (+₦5,500/bag overbilling = ₦506,000).
+              </div>
+              <div class="variance-footer">
+                <div class="mono" style="font-size: 12.5px;">
+                  Original Bill: <strong id="packet-total-inv">₦4,750,000</strong> &bull; 
+                  Approved Payout: <strong id="packet-total-app" style="color: var(--swiss-green);">₦3,864,000</strong>
+                </div>
+                <button id="btn-issue-debit-note" class="btn-swiss-primary" style="background: var(--swiss-red); border-color: var(--swiss-red);">
+                  <span>Issue Debit Note DN-8821 (-₦886,000) [ &rarr; ]</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Items Table -->
+            <div class="items-table-wrap">
+              <table class="swiss-table">
+                <thead>
+                  <tr>
+                    <th>Line Item Description</th>
+                    <th style="text-align: center;">PO Qty</th>
+                    <th style="text-align: center;">GRN Qty</th>
+                    <th style="text-align: center;">Inv Qty</th>
+                    <th>Variance Analysis</th>
+                    <th style="text-align: right;">Prevented Leakage</th>
+                  </tr>
+                </thead>
+                <tbody id="items-tbody">
+                  <!-- Injected via matchdesk.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" style="padding: 24px 0;">
+    <div class="container footer-imprint-bottom">
+      <div>&copy; 2026 VOUCHRA TECHNOLOGIES LTD (CAC RC 1984210). SABO YABA, LAGOS, NIGERIA.</div>
+      <div>99.98% AZURE RECONCILIATION UPTIME</div>
+    </div>
+  </footer>
+
+  <script src="assets/motion.js"></script>
+  <script src="assets/matchdesk.js"></script>
+</body>
+</html>
